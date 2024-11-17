@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block main %}
+<form action="" method="post">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <button type="submit">Cambiar Contraseña</button>
+</form>
+<a href="{% url 'user_detalle' user.id %}">Volver</a>
+
+{% endblock %}
