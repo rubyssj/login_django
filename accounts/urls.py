@@ -18,7 +18,7 @@ urlpatterns = [
     path(
         "cambiar_contraseña/done/",
         views.PasswordChangeDone.as_view(),
-        name="cambiar_contraseña_done",
+        name="password_change_done", #ajuste
     ),
     path("user_delete/<int:pk>/", views.UserDelete.as_view(), name="user_delete"),
 ]
