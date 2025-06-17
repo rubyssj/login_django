@@ -1,26 +1,64 @@
 {% extends "base.html" %}
 
 {% block main %}
-<h1>Lista de Tareas</h1>
-<table>
-  <tr>
-    <th>Título</th>
-    <th>Contenido</th>
-    <th colspan="3"></th>
-  </tr>
-  {% for task in tasks %}
-  <tr>
-    <td>{{task.title}}</td>
-    <td>{{task.content}}</td>
-    <td><a href="{% url 'tasks:detail' task.id %}">Detalles</a></td>
-    <td><a href="{% url 'tasks:edit' task.id %}">Editar</a></td>
-    <td><a href="{% url 'tasks:delete' task.id %}">Eliminar</a></td>
-  </tr>
-  {% endfor %}
-</table>
+<div class="container mt-4">
+  <div class="row mb-4">
+    <div class="col">
+      <h1 class="display-5 fw-bold text-primary">Lista de Tareas</h1>
+      <p class="text-muted">Gestiona tus tareas de forma eficiente</p>
+    </div>
+    <div class="col-auto d-flex align-items-center">
+      <a href="{% url 'tasks:create' %}" class="btn btn-primary">
+        <i class="bi bi-plus-circle me-2"></i>Nueva Tarea
+      </a>
+    </div>
+  </div>
 
-<br>
-
-<a href="{% url 'tasks:create' %}">Crear Nuevo</a>
-
+  {% if tasks %}
+  <div class="row">
+    <div class="col">
+      <div class="table-responsive">
+        <table class="table table-hover table-striped">
+          <thead class="table-light">
+            <tr>
+              <th>Título</th>
+              <th>Contenido</th>
+              <th class="text-center">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for task in tasks %}
+            <tr>
+              <td class="fw-bold">{{task.title}}</td>
+              <td>{{task.content|truncatechars:50}}</td>
+              <td class="text-center">
+                <div class="btn-group" role="group">
+                  <a href="{% url 'tasks:detail' task.id %}" class="btn btn-sm btn-outline-info">
+                    <i class="bi bi-eye"></i> Ver
+                  </a>
+                  <a href="{% url 'tasks:edit' task.id %}" class="btn btn-sm btn-outline-warning">
+                    <i class="bi bi-pencil"></i> Editar
+                  </a>
+                  <a href="{% url 'tasks:delete' task.id %}" class="btn btn-sm btn-outline-danger">
+                    <i class="bi bi-trash"></i> Eliminar
+                  </a>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <div class="row">
+    <div class="col">
+      <div class="alert alert-info">
+        <p class="mb-0">No tienes tareas pendientes. ¡Crea una nueva para comenzar!</p>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>
 {% endblock %}

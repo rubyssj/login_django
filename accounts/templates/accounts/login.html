@@ -1,12 +1,111 @@
 {% extends "base.html" %}
 
 {% block main %}
-<h1>Iniciar sesion</h1>
+<div class="login-page">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-5 col-md-7">
+        <div class="login-card">
+          <div class="login-header text-center mb-4">
+            <h1 class="brand-text">Rubencorp</h1>
+            <p class="text-white">Inicia sesión para acceder a tu cuenta</p>
+          </div>
+          
+          <div class="card shadow-lg border-0">
+            <div class="card-body p-5">
+              <form method="post" class="needs-validation" novalidate>
+                {% csrf_token %}
+                <input type="hidden" name="text" value="{{ next }}">
+                
+                <div class="form-floating mb-4">
+                  <input type="text" name="{{ form.username.name }}" class="form-control" id="id_username" placeholder="Nombre de usuario" required>
+                  <label for="id_username"><i class="bi bi-person me-2"></i>Email de usuario</label>
+                  {% if form.username.errors %}
+                  <div class="invalid-feedback d-block">
+                    {{ form.username.errors }}
+                  </div>
+                  {% endif %}
+                </div>
+                
+                <div class="form-floating mb-3">
+                  <input type="password" name="{{ form.password.name }}" class="form-control" id="id_password" placeholder="Contraseña" required>
+                  <label for="id_password"><i class="bi bi-lock me-2"></i>Contraseña</label>
+                  {% if form.password.errors %}
+                  <div class="invalid-feedback d-block">
+                    {{ form.password.errors }}
+                  </div>
+                  {% endif %}
+                </div>
+                
+                <div class="text-end mb-4">
+                  <a href="{% url 'password_reset' %}" class="text-primary small">¿Olvidaste tu contraseña?</a>
+                </div>
+                
+                {% if form.non_field_errors %}
+                <div class="alert alert-danger mb-4">
+                  {% for error in form.non_field_errors %}
+                  <p class="mb-0">{{ error }}</p>
+                  {% endfor %}
+                </div>
+                {% endif %}
+                
+                <div class="d-grid gap-2 mb-4">
+                  <button type="submit" class="btn btn-primary btn-lg">
+                    <i class="bi bi-box-arrow-in-right me-2"></i>Iniciar Sesión
+                  </button>
+                </div>
+              </form>
+              
+              <div class="text-center">
+                <p class="mb-0">¿No tienes cuenta? <a href="{% url 'signup' %}" class="text-primary fw-bold">Regístrate aquí</a></p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="text-center mt-4">
+            <p class="text-white-50">&copy; 2024 Rubencorp. Todos los derechos reservados.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<form method="post">
-    {% csrf_token %}
-    <input type="hidden" name="text" value="{{ next }}" />
-    {{ form.as_p }}
-    <input type="submit" value="Iniciar sesion">
-</form>
+<style>
+.login-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  display: flex;
+  align-items: center;
+  padding: 40px 0;
+}
+
+.login-card {
+  padding: 20px;
+}
+
+.brand-text {
+  color: white;
+  font-weight: 700;
+  font-size: 2.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
+}
+
+.card {
+  border-radius: 15px;
+}
+
+.btn-primary {
+  background: linear-gradient(to right, #4776E6, #8E54E9);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+  background: linear-gradient(to right, #3a5fc4, #7b46d1);
+}
+</style>
 {% endblock %}

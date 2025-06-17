@@ -1,22 +1,43 @@
 {% extends "base.html" %}
 
 {% block main %}
-<h1>Página de Eliminación de Tareas</h1>
-<p>
-  <strong>Título:</strong>
-  {{task.title}}
-</p>
-
-<p>
-  <strong>Contenido:</strong>
-  {{task.content}}
-</p>
-<form action="{% url 'tasks:delete' task.id %}" method="post">
-  {% csrf_token %}
-  <input type="submit" value="Eliminar">
-</form>
-
-<br>
-
-<a href="{% url 'tasks:index' %}">Volver</a>
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow border-danger">
+        <div class="card-header bg-danger text-white">
+          <h4 class="mb-0">Confirmar Eliminación</h4>
+        </div>
+        <div class="card-body">
+          <div class="alert alert-warning">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+            ¿Estás seguro de que deseas eliminar esta tarea? Esta acción no se puede deshacer.
+          </div>
+          
+          <div class="card mb-4">
+            <div class="card-header bg-light">
+              <strong>Detalles de la Tarea</strong>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{task.title}}</h5>
+              <p class="card-text">{{task.content}}</p>
+            </div>
+          </div>
+          
+          <form action="{% url 'tasks:delete' task.id %}" method="post">
+            {% csrf_token %}
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <a href="{% url 'tasks:index' %}" class="btn btn-outline-secondary me-md-2">
+                <i class="bi bi-arrow-left"></i> Cancelar
+              </a>
+              <button type="submit" class="btn btn-danger">
+                <i class="bi bi-trash"></i> Confirmar Eliminación
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

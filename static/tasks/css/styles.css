@@ -1,0 +1,92 @@
+/* Estilos generales */
+body,html {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  width: 100%;
+  padding: 0;
+}
+.navbar-nav {
+  width: 100%; /* Asegura que la navbar ocupe todo el ancho */
+  margin: 0;   /* Elimina márgenes */
+  padding: 0;  /* Elimina rellenos */
+}
+.btn-custom {
+  border: 2px solid #007bff; /* Borde azul */
+  color: #007bff; /* Texto azul */
+  padding: 8px 16px; /* Espaciado interno */
+  font-size: 1rem; /* Tamaño de texto */
+  border-radius: 25px; /* Bordes redondeados */
+  transition: all 0.3s ease; /* Transición suave */
+}
+.btn-link {
+  text-decoration: none; /* Eliminar subrayado */
+}
+
+.btn-link:hover {
+  text-decoration: underline; /* Opcional: Añadir subrayado al pasar el cursor */
+}
+.btn-custom:hover {
+  background-color: #007bff; /* Fondo azul */
+  color: white; /* Texto blanco */
+  }
+
+/* Estilos para el formulario de inicio de sesión */
+.login-container {
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  height: 100vh;  /* Asegúrate de que cubra toda la altura de la ventana */
+  display: flex;  /* Para centrar el contenido */
+  align-items: center;  /* Centrado vertical */
+  justify-content: center;  /* Centrado horizontal */
+}
+
+.login-form {
+  
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(136, 4, 245, 0.1);
+  width: 400px;
+}
+
+.login-form h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.login-form input {
+  display: block;
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.login-form button {
+  display: block;
+  width: 100%;
+  background-color: #0f2c4b;
+  color: #fff;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-form button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos para el pie de página */
+footer {
+  background-color: #000102;
+  color: #a08383;
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.8rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

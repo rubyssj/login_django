@@ -77,13 +77,13 @@ WSGI_APPLICATION = 'loginTask.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres.meopmglztsdnvfbzbtab',
-        'PASSWORD': 'e!5fiE$JYs8PaBB',
-        'HOST': 'aws-0-us-west-1.pooler.supabase.com',
-        'PORT': '6543',
-    }
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'login',
+        'USER': 'postgres',
+        'PASSWORD': 'admin',
+        'HOST': '127.0.0.1',
+        'DATABASE_PORT': '5432', 
+    } 
 }
 
 # Password validation
@@ -124,6 +124,7 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 
 STATIC_URL = 'static/'
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -133,3 +134,6 @@ LOGIN_URL = "/accounts/login"
 LOGIN_REDIRECT_URL = "/tasks"
 LOGOUT_REDIRECT_URL = "/accounts/login"
 AUTH_USER_MODEL = "accounts.CustomUser"
+
+# Configuración de correo electrónico para desarrollo
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # Muestra los correos en la consola
